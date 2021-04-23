@@ -1,24 +1,29 @@
 function readingList(books) {
   // Write your code here...
-  let contentEl = document.getElementById("content");
-  let ulElem = document.createElement("ul");
-  ulElem.className += " ul-style";
-
-  for (let book of books) {
-    let liElem = document.createElement("li");
-    let pElem = document.createElement("p");
-    pElem.innerHTML = `<strong> ${book.title}<br>By:</strong> ${book.author}`;
-    let imgElem = document.createElement("img");
-    imgElem.setAttribute("src", "./img/" + `${book.title}` + ".jpg");
-    book.alreadyRead === true ?
-      liElem.className += " read-book" :
-      liElem.className += " not-read-book";
-
-    liElem.appendChild(pElem);
-    liElem.appendChild(imgElem);
-    ulElem.appendChild(liElem);
+  const content = document.querySelector("#content");
+  const listCont = document.createElement("ul");
+  listCont.className = 'list';
+  const img = ["https://images-na.ssl-images-amazon.com/images/I/410RTQezHYL._SX326_BO1,204,203,200_.jpg"
+    , "https://images-na.ssl-images-amazon.com/images/I/81A-mvlo+QL.jpg"
+    , "https://images-na.ssl-images-amazon.com/images/I/41as+WafrFL.jpg"]
+  for (const [index, book] of books.entries()) {
+    const listBook = document.createElement("li");
+    listBook.className = "list-items";
+    const pEl = listBook.appendChild(document.createElement("p"));
+    pEl.className = "ptext";
+    const imgEl = listBook.appendChild(document.createElement("img"));
+    imgEl.className = "img-items";
+    pEl.textContent = `${book.title} - ${book.author}`;
+    imgEl.src = `${img[index]}`;
+    if (book.alreadyRead == true) {
+      listBook.style.backgroundColor = "red";
+    }
+    else {
+      listBook.style.backgroundColor = "green";
+    }
+    listCont.appendChild(listBook);
   }
-  contentEl.appendChild(ulElem);
+  content.append(listCont);
 }
 
 

@@ -1,25 +1,20 @@
 function listOfColours(colours) {
   // Write your code here...
-  let contents = document.querySelector("#content");
-  let dropMenu = document.createElement("select");
-  let paragraph = document.createElement("p");
-  paragraph.innerText = `You have selected:`;
-
-  for (let colour of colours) {
-    let option = document.createElement("option");
-    option.innerText = colour;
-    dropMenu.appendChild(option);
+  const content = document.querySelector("#content");
+  const selectEl = document.createElement("select");
+  const pEl = document.createElement("p");
+  for (const color of colours) {
+    const opEl = selectEl.appendChild(document.createElement("option"));
+    opEl.innerText = color;
   }
-
-  dropMenu.addEventListener("change", addColour);
-
-  function addColour(e) {
-    paragraph.style.backgroundColor = e.target.value;
-    paragraph.innerText = `You have selected: ${e.target.value}`;
+  selectEl.addEventListener("change", colorSelect);
+  function colorSelect(e) {
+    pEl.innerText = `You have selected: ${e.target.value}`;
+    pEl.style.color = e.target.value;
   }
+  content.appendChild(pEl);
+  content.appendChild(selectEl);
 
-  contents.appendChild(paragraph);
-  contents.appendChild(dropMenu);
 }
 
 

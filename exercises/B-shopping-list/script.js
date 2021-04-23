@@ -1,12 +1,12 @@
 function shoppingList(arrayOfPeople) {
   // Write your code here...
-  let content = document.querySelector("#content");
-  let listCont = document.createElement("ul");
+  const content = document.querySelector("#content");
+  const listCont = document.createElement("ul");
 
   for (let item of arrayOfPeople) {
-    let shoppingListElem = document.createElement("li")
-    shoppingListElem.innerText = item;
-    listCont.appendChild(shoppingListElem);
+    const listEl = document.createElement("li")
+    listEl.innerText = item;
+    listCont.appendChild(listEl);
 
   }
   content.append(listCont);
